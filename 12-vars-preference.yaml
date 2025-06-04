@@ -1,0 +1,25 @@
+- name: understand vars preference
+  hosts: local
+  connection: local
+  vars:
+    GREETING: "Hello from PLAY"
+  vars_files:
+  - course.yaml
+  vars_prompt:
+  - name: GREETING
+    prompt: Please enter the GREETING
+    private: false
+  tasks:
+  - name: print the GREETING
+    vars:
+      GREETING: "Hello from task"
+    ansible.builtin.debug:
+      msg: "Hello I am learning {{ COURSE }}, Duration: {{ DURATION }}, Trainer is: {{ TRAINER }}"
+
+
+#1. Command line args
+#2. Task
+#3. File
+#4. Prompt
+#5. Play
+#6. Inventory
